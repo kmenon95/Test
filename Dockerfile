@@ -1,9 +1,9 @@
 FROM centos
 
-LABEL maintainer="admin@example1.com"
-RUN dnf update -y
-RUN dnf upgrade -y
-RUN dnf install epel-release -y
-RUN dnf install nginx -y
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+RUN cd /etc/yum.repos.d/
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+RUN yum -y install java
+
+CMD /bin/bash

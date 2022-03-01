@@ -1,4 +1,4 @@
-FROM centos:8
+FROM centos
 
 LABEL maintainer="admin@example1.com"
 RUN dnf update -y
